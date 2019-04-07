@@ -19,16 +19,30 @@
 
     #output{
       background: rgba(0, 0, 0, 0.2);
+      
     }
 
-    #gig1{
+    span{
+      display: flex;
+      justify-content: space-between;
+    }
+
+    #totTime1{
       /* background-color: #1976d2; */
       background: rgba(0, 0, 0, 0.2);
+      width: 33%;
     }
 
-    #gig2{
+    #totTime2{
       /* background-color: #1565c0; */
       background: rgba(0, 0, 0, 0.2);
+      width: 33%;
+    }
+
+    #totTime3{
+      /* background-color: #1565c0; */
+      background: rgba(0, 0, 0, 0.2);
+      width: 33%;
     }
   </style>
 
@@ -53,26 +67,36 @@
             <input id="rateInput" type="text" class="form-control form-control-lg" placeholder="enter interest rate...">
           </div>
           <div id="output">
-            <div class="card bg-primary mb-2">
+            <div class="card bg-warning mb-2">
               <div class="card-body">
-                <h4>Needed Monthly Payment: </h4>  <!-- could be numdays2, numYears2, numMonths2. or gig options output -->
+                <h4>Needed Monthly Payment: </h4>  
                 <div id="monthlyPayOutput"></div>
               </div>
             </div>
+            <span>
+              <div class="card mb-2" id="totTime1">
+                  <div class="card-body">
+                    <h4>Days: </h4>  
+                    <div id="numdays"></div>
+                  </div>
+                </div>
 
-            <div class="card mb-2" id="gig1">
+              <div class="card mb-2" id="totTime2">
                 <div class="card-body">
-                  <h4>Side gig 1: </h4>  <!-- could be numdays2, numYears2, numMonths2. or gig options output -->
-                  <div id="gig1Output"></div>
+                  <h4>Months: </h4>  
+                  <div id="numMonths"></div>
                 </div>
               </div>
 
-            <div class="card mb-2" id="gig2">
-              <div class="card-body">
-                <h4>Side gig 2: </h4>  <!-- could be numdays2, numYears2, numMonths2. or gig options output -->
-                <div id="gig2Output"></div>
+              <div class="card mb-2" id="totTime3">
+                <div class="card-body">
+                  <h4>Years: </h4>  
+                  <div id="numYears"></div>
+                </div>
               </div>
-            </div>
+            </span>
+
+            
 
             <br>
 
@@ -98,8 +122,9 @@
       
       var monthlyPmt = (rate * debt) / (1 - (Math.pow((1 + rate), (-months))));
       document.getElementById('monthlyPayOutput').innerHTML = parseFloat(monthlyPmt).toFixed(2);
-      document.getElementById('gig1Output').innerHTML = "x";
-      document.getElementById('gig2Output').innerHTML = "x";
+      document.getElementById('numdays').innerHTML = totalDays;
+      document.getElementById('numMonths').innerHTML = months.toFixed(2);
+      document.getElementById('numYears').innerHTML = (months / 12).toFixed(2);
     });
   </script>
 
