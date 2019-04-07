@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <style>
+    body{
+      margin-top:70px;
+      background-color: #333;
+      color: white;
+      background: url(http://studiozandra.com/test/assets/img/20171022_chinahatmaybe.jpg) no-repeat;
+      background-size: cover;
+    }
+
+    #output{
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    #gig1{
+      /* background-color: #1976d2; */
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    #gig2{
+      /* background-color: #1565c0; */
+      background: rgba(0, 0, 0, 0.2);
+    }
+  </style>
+
+  <title>Debt-Free Date Calculator App</title>
+
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <h1 class="display-4 text-center">
+        Debt-Free Date Calculator
+        </h1> <!-- end display-4 h1 ele -->
+        <form>
+          <div class="form-group">
+              <div id="start_date"><p><label class="form">Start Date (usually today):</label><input type="date" class="textbox" id="startDate"></p></div>
+        
+              <div id="freedom_date"><p><label class="form">Desired Debt Freedom Date:</label><input type="date" class="textbox" id="freedomDate"></p></div>
+
+              <input id="debtInput" type="text" class="form-control form-control-lg" placeholder="enter debt amount...">
+
+            <input id="rateInput" type="text" class="form-control form-control-lg" placeholder="enter interest rate...">
+          </div>
+          <div id="output">
+            <div class="card bg-primary mb-2">
+              <div class="card-body">
+                <h4>Needed Monthly Payment: </h4>  <!-- could be numdays2, numYears2, numMonths2. or gig options output -->
+                <div id="monthlyPayOutput"></div>
+              </div>
+            </div>
+
+            <div class="card mb-2" id="gig1">
+                <div class="card-body">
+                  <h4>Side gig 1: </h4>  <!-- could be numdays2, numYears2, numMonths2. or gig options output -->
+                  <div id="gig1Output"></div>
+                </div>
+              </div>
+
+            <div class="card mb-2" id="gig2">
+              <div class="card-body">
+                <h4>Side gig 2: </h4>  <!-- could be numdays2, numYears2, numMonths2. or gig options output -->
+                <div id="gig2Output"></div>
+              </div>
+            </div>
+
+            <br>
+
+          </div> <!-- end outputs div -->
+        </form>
+      </div>
+    </div>
+  </div> <!-- end container div -->
+
+  <script>
+    document.getElementById('output').style.visibility = 'hidden';
+    document.getElementById('startDate').valueAsDate = new Date();
+    let debt = document.getElementById("debtInput").value;
+    document.getElementById('rateInput').addEventListener('input', function(eventparam){
+      document.getElementById('output').style.visibility = 'visible';
+      let rate = ((eventparam.target.value / 12) / 100);
+      console.log("rate = " + rate);
+      var freeDt = new Date(document.getElementById("freedomDate").value);
+      var totalDays = parseInt((freeDt - new Date) / (1000 * 60 * 60 * 24));
+      console.log("totaldays = " + totalDays);
+      var months = totalDays / 30.44;
+      console.log("months = " + months);
+      
+      var monthlyPmt = (rate * debt) / (1 - (Math.pow((1 + rate), (-months))));
+      document.getElementById('monthlyPayOutput').innerHTML = parseFloat(monthlyPmt).toFixed(2);
+      document.getElementById('gig1Output').innerHTML = "x";
+      document.getElementById('gig2Output').innerHTML = "x";
+    });
+  </script>
+
+</body>
+</html>
