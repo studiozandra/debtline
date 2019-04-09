@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<!-- licensed under the GNU General Public License v3.0 -->
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -15,6 +15,10 @@
       color: white;
       background: url(http://studiozandra.com/test/assets/img/20171022_chinahatmaybe.jpg) no-repeat;
       background-size: cover;
+    }
+
+    #startDate{
+      background-color: gray;
     }
 
     #output{
@@ -61,13 +65,13 @@
         </h1> <!-- end display-4 h1 ele -->
         <form>
           <div class="form-group">
-              <div id="start_date"><p><label class="form">Start Date (today):</label><input type="date" class="textbox" id="startDate"></p></div>
+              <div id="start_date"><p><label class="form">Start Date (today): </label><input type="date" class="textbox" id="startDate"></p></div>
         
-              <div id="freedom_date"><p><label class="form">Desired Debt Freedom Date:</label><input type="date" class="textbox" id="freedomDate"></p></div>
+              <div id="freedom_date"><p><label class="form">Desired Debt Freedom Date: </label><input type="date" class="textbox" id="freedomDate"></p></div>
 
-              <input id="debtInput" type="text" class="form-control form-control-lg" placeholder="enter debt amount...">
+              <input id="debtInput" type="text" class="form-control form-control-lg mb-2" placeholder="Enter debt amount...">
 
-            <input id="rateInput" type="text" class="form-control form-control-lg" placeholder="enter interest rate...">
+            <input id="rateInput" type="text" class="form-control form-control-lg" placeholder="Enter the interest rate...">
           </div>
           <div id="output">
             <div class="card bg-warning mb-2" id="needPay">
@@ -112,22 +116,31 @@
   <script>
     document.getElementById('output').style.visibility = 'hidden';
     document.getElementById('startDate').valueAsDate = new Date();
-    let debt = document.getElementById("debtInput").value;
-    document.getElementById('rateInput').addEventListener('input', function(eventparam){
+    
+
+   
+
+    document.getElementById('rateInput').addEventListener('input', function onInput(eventparam){
       document.getElementById('output').style.visibility = 'visible';
       let rate = ((eventparam.target.value / 12) / 100);
+      let debt = document.getElementById("debtInput").value;
       console.log("rate = " + rate);
-      var freeDt = new Date(document.getElementById("freedomDate").value);
-      var totalDays = parseInt((freeDt - new Date) / (1000 * 60 * 60 * 24));
-      console.log("totaldays = " + totalDays);
-      var months = totalDays / 30.44;
-      console.log("months = " + months);
       
-      var monthlyPmt = (rate * debt) / (1 - (Math.pow((1 + rate), (-months))));
-      document.getElementById('monthlyPayOutput').innerHTML = parseFloat(monthlyPmt).toFixed(2);
+      let freeDt = new Date(document.getElementById("freedomDate").value);
+      let totalDays = parseInt((freeDt - new Date) / (1000 * 60 * 60 * 24));
+      console.log("totaldays = " + totalDays);
+      let months = totalDays / 30.44;
+      console.log("months = " + months);
+
+      let monthlyPmt = parseFloat((rate * debt) / (1 - (Math.pow((1 + rate), (-months)))));
+     
+      document.getElementById('monthlyPayOutput').innerHTML = (monthlyPmt).toFixed(2);
+      console.log('monthlypmt ' + monthlyPmt)
       document.getElementById('numdays').innerHTML = totalDays;
       document.getElementById('numMonths').innerHTML = months.toFixed(2);
       document.getElementById('numYears').innerHTML = (months / 12).toFixed(2);
+
+      
     });
   </script>
 
