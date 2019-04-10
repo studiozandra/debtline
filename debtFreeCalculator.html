@@ -113,7 +113,7 @@
   <script>
     document.getElementById('output').style.visibility = 'hidden';
     document.getElementById('startDate').valueAsDate = new Date();
-
+    
     document.getElementById('rateInput').addEventListener('input', function onInput(eventparam){
       document.getElementById('output').style.visibility = 'visible';
       let rate = ((eventparam.target.value / 12) / 100);
@@ -121,7 +121,7 @@
       
       let freeDt = new Date(document.getElementById("freedomDate").value);
       let totalDays = parseInt((freeDt - new Date) / (1000 * 60 * 60 * 24));
-      console.log("totaldays = " + totalDays);
+      
       let months = totalDays / 30.44;
 
       // This is the loan amortization formula:
@@ -129,6 +129,7 @@
      
       document.getElementById('monthlyPayOutput').innerHTML = (monthlyPmt).toFixed(2);
       
+      // The bottom 3 output divs:
       document.getElementById('numdays').innerHTML = totalDays;
       document.getElementById('numMonths').innerHTML = months.toFixed(2);
       document.getElementById('numYears').innerHTML = (months / 12).toFixed(2);
@@ -137,6 +138,6 @@
     });
   </script>
 
-  <!-- Thank you kindly to Brad Traversy and Isaac Lyman -->
+  <!-- With thanks to Traversy Media and Isaac Lyman. Styling inspiration from Nodws. -->
 </body>
 </html>
