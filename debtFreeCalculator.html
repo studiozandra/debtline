@@ -116,16 +116,16 @@
     
     document.getElementById('rateInput').addEventListener('input', function onInput(eventparam){
       document.getElementById('output').style.visibility = 'visible';
-      let rate = ((eventparam.target.value / 12) / 100);
-      let debt = document.getElementById("debtInput").value;
+      const rate = ((eventparam.target.value / 12) / 100);
+      const debt = document.getElementById("debtInput").value;
       
-      let freeDt = new Date(document.getElementById("freedomDate").value);
-      let totalDays = parseInt((freeDt - new Date) / (1000 * 60 * 60 * 24));
+      const freeDt = new Date(document.getElementById("freedomDate").value);
+      const totalDays = parseInt((freeDt - new Date) / (1000 * 60 * 60 * 24));
       
-      let months = totalDays / 30.44;
+      const months = totalDays / 30.44;
 
       // This is the loan amortization formula:
-      let monthlyPmt = parseFloat((rate * debt) / (1 - (Math.pow((1 + rate), (-months)))));
+      const monthlyPmt = parseFloat((rate * debt) / (1 - (Math.pow((1 + rate), (-months)))));
      
       document.getElementById('monthlyPayOutput').innerHTML = (monthlyPmt).toFixed(2);
       
