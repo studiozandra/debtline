@@ -62,7 +62,7 @@
         </h1> <!-- end display-4 h1 ele -->
         <form>
           <div class="form-group">
-              <div id="start_date"><p><label class="form">Start Date (today): </label><input type="date" class="textbox" id="startDate"></p></div>
+              <div id="start_date"><p><label class="form">Starting today </label><input type="date" class="textbox" id="startDate"></p></div>
         
               <div id="freedom_date"><p><label class="form">Desired Debt Freedom Date: </label><input type="date" class="textbox" id="freedomDate"></p></div>
 
@@ -112,11 +112,13 @@
 
   <script>
     document.getElementById('output').style.visibility = 'hidden';
+    document.getElementById('startDate').style.visibility = 'hidden';
     document.getElementById('startDate').valueAsDate = new Date();
     
-    document.getElementById('rateInput').addEventListener('input', function onInput(eventparam){
+    function calc(){
       document.getElementById('output').style.visibility = 'visible';
-      const rate = ((eventparam.target.value / 12) / 100);
+      let interestRate = document.getElementById('rateInput').value;
+      const rate = ((interestRate / 12) / 100);
       const debt = document.getElementById("debtInput").value;
       
       const freeDt = new Date(document.getElementById("freedomDate").value);
@@ -135,9 +137,15 @@
       document.getElementById('numYears').innerHTML = (months / 12).toFixed(2);
 
       
+    };
+
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach((inp) => {
+      inp.addEventListener('input', calc)
     });
   </script>
 
-  <!-- With thanks to Traversy Media and Isaac Lyman. Styling inspiration from Nodws. -->
+  <!-- With thanks to Traversy Media, Isaac Lyman, and fullstackbeginner.com . Styling inspiration from Nodws. -->
+  
 </body>
 </html>
