@@ -3,7 +3,6 @@ document.getElementById('amountAndInterest2').style.display = 'none';
 document.getElementById('amountAndInterest3').style.display = 'none';
 
   document.getElementById("add").onclick = function () {
-    // var ok = true;
 
      if (document.getElementById('amountAndInterest1').style.display == 'none') {
       document.getElementById('amountAndInterest1').style.display = 'block';
@@ -17,31 +16,23 @@ document.getElementById('amountAndInterest3').style.display = 'none';
      }
   };
   
-
 document.getElementById("remove1").onclick = function () {
-    // var ok = true;
-
      if (document.getElementById('amountAndInterest1').style.display == 'block') {
       console.log("clicked minus")
       document.getElementById('amountAndInterest1').style.display = 'none';    
-     }
-    
+     }    
 };
-document.getElementById("remove2").onclick = function () {
-    // var ok = true;
 
+document.getElementById("remove2").onclick = function () {
      if (document.getElementById('amountAndInterest2').style.display == 'block') {
       document.getElementById('amountAndInterest2').style.display = 'none';    
-     }
-    
+     }    
 };
-document.getElementById("remove3").onclick = function () {
-    // var ok = true;
 
+document.getElementById("remove3").onclick = function () {
      if (document.getElementById('amountAndInterest3').style.display == 'block') {
       document.getElementById('amountAndInterest3').style.display = 'none';    
      }
-    
 };
 
 
@@ -107,13 +98,12 @@ function calc(){
   var para3 = document.createElement("p");
   para3.className = 'card bg-warning mb-2';
   document.getElementById('monthlyPayOutput').appendChild(para1);
-  document.getElementsByClassName('card bg-warning mb-2')[1].innerHTML = "debt 2" + " " + xtraCalc(Debt2, rate2); 
+  document.getElementsByClassName('card bg-warning mb-2')[1].innerHTML = "debt 2:" + " " + xtraCalc(Debt2, rate2); 
   document.getElementById('monthlyPayOutput').appendChild(para2);
-  document.getElementsByClassName('card bg-warning mb-2')[2].innerHTML = "debt 3" + " " + xtraCalc(Debt3, rate3)
+  document.getElementsByClassName('card bg-warning mb-2')[2].innerHTML = "debt 3:" + " " + xtraCalc(Debt3, rate3)
   document.getElementById('monthlyPayOutput').appendChild(para3);
-  document.getElementsByClassName('card bg-warning mb-2')[3].innerHTML = "debt 4" + " " + xtraCalc(Debt4, rate4)
+  document.getElementsByClassName('card bg-warning mb-2')[3].innerHTML = "debt 4:" + " " + xtraCalc(Debt4, rate4)
 };
-
 
 
 var inputs = document.querySelectorAll('input');

@@ -5,13 +5,33 @@ body{
     background: linear-gradient(45deg, #9682C8 10%, #05BCC9);
   }
 
-
+  #start_date{
+      text-align: center;
+  }
+  
   #startDate{
     background-color: gray;
+    display: none;
   }
 
   #freedomDate{
     border-radius: 7px;
+  }
+
+  #amountAndInterest1, #amountAndInterest2, #amountAndInterest3{
+    border: 3px dotted #ffc107;
+  }
+
+  #Debt2, #rate2{
+    background-color: antiquewhite;
+  }
+
+  #Debt3, #rate3{
+    background-color: beige;
+  }
+
+  #Debt4, #rate4{
+    background-color: bisque;
   }
 
   #output{
