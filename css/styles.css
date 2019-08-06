@@ -1,0 +1,49 @@
+body{
+    margin-top:70px;
+    background-color: #333;
+    color: white;
+    background: linear-gradient(45deg, #9682C8 10%, #05BCC9);
+  }
+
+
+  #startDate{
+    background-color: gray;
+  }
+
+  #freedomDate{
+    border-radius: 7px;
+  }
+
+  #output{
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  #needPay{
+    color: #101A2B;
+    /* ffc107 */
+  }
+
+  span{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #totTime1{
+    background: rgba(0, 0, 0, 0.2);
+    width: 33%;
+  }
+
+  #totTime2{
+    background: rgba(0, 0, 0, 0.2);
+    width: 33%;
+  }
+
+  #totTime3{
+    background: rgba(0, 0, 0, 0.2);
+    width: 33%;
+  }
+  .form-control {
+  display: inline-block;
+  width: 90%;
+  }
+
