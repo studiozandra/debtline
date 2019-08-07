@@ -6,14 +6,11 @@ document.getElementById('amountAndInterest3').style.display = 'none';
 document.getElementById("plus-sign").onclick = function () {
 
     if (document.getElementById('amountAndInterest1').style.display == 'none') {
-      document.getElementById('amountAndInterest1').style.display = 'block';
-      console.log("one");    
+      document.getElementById('amountAndInterest1').style.display = 'block';    
      }else if (document.getElementById('amountAndInterest2').style.display == 'none'){
-      document.getElementById('amountAndInterest2').style.display = 'block';
-      console.log("two");   
+      document.getElementById('amountAndInterest2').style.display = 'block';  
      }else {
       document.getElementById('amountAndInterest3').style.display = 'block';
-      console.log("one and two");
      }
 };
 
@@ -52,7 +49,7 @@ function calc(){
   const totalDys = parseInt((freeDat - new Date) / (1000 * 60 * 60 * 24));
   const months = totalDys / 30.44;
 
-  // The calculation of any additional debts -- || 0 avoids displaying "NaN" before the user can enter both values
+  // The calculation of any additional debts -- '|| 0' avoids displaying "NaN" before the user can enter both values
   function xtraCalc(d, r){
 
   const xtraIntr = r.value || 0;
@@ -61,7 +58,6 @@ function calc(){
   const dbt = d.value || 0;
 
   const monthlyPay = parseFloat((rt * dbt) / (1 - (Math.pow((1 + rt), (-months))))) || 0;
-
 
   return (monthlyPay).toFixed(2);
 
@@ -78,12 +74,11 @@ function calc(){
   document.getElementById('numYears').innerHTML = (months / 12).toFixed(2);
 
   // if any additional debts are added (made visible,) append to results div with the calculation
-  if (document.getElementById('amountAndInterest1').style.display == 'block') {
+  if (document.getElementById('amountAndInterest1').style.display == 'block'){
       var para1 = document.createElement("p");
       para1.className = 'card bg-warning mb-2';
       document.getElementById('monthlyPayOutput').appendChild(para1);
-      document.getElementsByClassName('card bg-warning mb-2')[1].innerHTML = "debt 2:" + " " + xtraCalc(Debt2, rate2); 
-      console.log('Debt2 is ' + Debt2.value);   
+      document.getElementsByClassName('card bg-warning mb-2')[1].innerHTML = "debt 2:" + " " + xtraCalc(Debt2, rate2);    
    }
    if (document.getElementById('amountAndInterest2').style.display == 'block'){
        var para2 = document.createElement("p");
@@ -109,3 +104,5 @@ var inputs = document.querySelectorAll('input');
 inputs.forEach((inp) => {
   inp.addEventListener('input', calc)
 });
+
+// add listener for minus sign clicks
