@@ -8,7 +8,7 @@ body{
   #start_date{
       text-align: center;
   }
-  
+
   #startDate{
     background-color: gray;
     display: none;
@@ -16,6 +16,16 @@ body{
 
   #freedomDate{
     border-radius: 7px;
+  }
+
+  #plus-sign{
+    cursor: pointer; /* hand-shaped cursor */
+    cursor: hand; /* for IE 5.x */
+  }
+
+  .minus-sign{
+    cursor: pointer; /* hand-shaped cursor */
+    cursor: hand; /* for IE 5.x */
   }
 
   #amountAndInterest1, #amountAndInterest2, #amountAndInterest3{

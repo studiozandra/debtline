@@ -15,19 +15,19 @@ document.getElementById("plus-sign").onclick = function () {
 };
 
 // event of clicking yellow minus sign to remove 3 other debt inputs
-document.getElementById("minus-sign1").onclick = function () {
+document.getElementById("minus-sign1").onclick = function minus1() {
      if (document.getElementById('amountAndInterest1').style.display == 'block') {
       document.getElementById('amountAndInterest1').style.display = 'none';    
      }    
 };
 
-document.getElementById("minus-sign2").onclick = function () {
+document.getElementById("minus-sign2").onclick = function minus2() {
      if (document.getElementById('amountAndInterest2').style.display == 'block') {
       document.getElementById('amountAndInterest2').style.display = 'none';    
      }    
 };
 
-document.getElementById("minus-sign3").onclick = function () {
+document.getElementById("minus-sign3").onclick = function minus3() {
      if (document.getElementById('amountAndInterest3').style.display == 'block') {
       document.getElementById('amountAndInterest3').style.display = 'none';    
      }
@@ -72,6 +72,8 @@ function calc(){
   document.getElementById('numdays').innerHTML = totalDys;
   document.getElementById('numMonths').innerHTML = months.toFixed(2);
   document.getElementById('numYears').innerHTML = (months / 12).toFixed(2);
+  
+  
 
   // if any additional debts are added (made visible,) append to results div with the calculation
   if (document.getElementById('amountAndInterest1').style.display == 'block'){
@@ -79,6 +81,11 @@ function calc(){
       para1.className = 'card bg-warning mb-2';
       document.getElementById('monthlyPayOutput').appendChild(para1);
       document.getElementsByClassName('card bg-warning mb-2')[1].innerHTML = "debt 2:" + " " + xtraCalc(Debt2, rate2);    
+   }else{
+      var para1 = document.createElement("p");
+      para1.className = 'card bg-warning mb-2';
+      document.getElementById('monthlyPayOutput').appendChild(para1);
+      document.getElementsByClassName('card bg-warning mb-2')[1].innerHTML = "click + / - to enter/remove more debts";
    }
    if (document.getElementById('amountAndInterest2').style.display == 'block'){
        var para2 = document.createElement("p");
@@ -105,4 +112,12 @@ inputs.forEach((inp) => {
   inp.addEventListener('input', calc)
 });
 
-// add listener for minus sign clicks
+// listen for minus sign clicks
+var minus = document.getElementsByClassName('minus-sign');
+for(var i = 0; i < minus.length; i++) {
+    minus[i].addEventListener('click', calc);
+}
+
+// listen for plus sign clicks
+var plus = document.getElementById("plus-sign");
+plus.addEventListener('click', calc);
