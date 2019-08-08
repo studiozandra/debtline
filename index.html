@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!-- licensed under the GNU General Public License v3.0 -->
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="css/styles.css" rel="stylesheet" />
+
+
+  <title>Debt-Free Date Calculator App</title>
+
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <h1 class="display-4 text-center">
+          DebtLine.
+        </h1> <!-- end display-4 h1 ele -->
+        <form>
+          <div class="form-group">
+              <div id="start_date"><p><label class="form">Set a deadline to be debt-free, starting today </label><input type="date" class="textbox" id="startDate"></p></div>
+        
+              <div id="freedom_date"><p><label class="form">Desired Debt Freedom Date: </label><input type="date" class="textbox" id="freedomDate"></p></div>
+                <div id="amountAndInterest0">
+                  <input id="debtInput0" type="text" class="form-control form-control-lg mb-2" placeholder="Enter debt amount...">
+
+                  <input id="rateInput0" type="text" class="form-control form-control-lg" placeholder="Enter the interest rate..."><img src="plus-sign.png" id="plus-sign" alt="Add another debt" height="50" width="50">
+                </div>
+                <div id="amountAndInterest1" class="additionalDebt">
+                  <input id="Debt2" type="text" class="form-control form-control-lg mb-2" placeholder="Enter another debt amount...">
+  
+                  <input id="rate2" type="text" class="form-control form-control-lg" placeholder="Enter interest rate..."><img src="minus-sign.png" class="minus-sign" id="minus-sign1" alt="remove this debt" height="50" width="50">
+                </div>
+                <div id="amountAndInterest2" class="additionalDebt">
+                  <input id="Debt3" type="text" class="form-control form-control-lg mb-2" placeholder="Enter third debt amount...">
+    
+                  <input id="rate3" type="text" class="form-control form-control-lg" placeholder="Enter interest rate..."><img src="minus-sign.png" class="minus-sign" id="minus-sign2" alt="remove this debt" height="50" width="50">
+                </div>
+                <div id="amountAndInterest3" class="additionalDebt">
+                  <input id="Debt4" type="text" class="form-control form-control-lg mb-2" placeholder="Enter fourth debt amount...">
+      
+                  <input id="rate4" type="text" class="form-control form-control-lg" placeholder="Enter interest rate..."><img src="minus-sign.png" class="minus-sign" id="minus-sign3" alt="remove this debt" height="50" width="50">
+                </div>
+              </div>
+          
+          
+          <div id="output">
+            <div class="card bg-warning mb-2" id="needPay">
+              <div class="card-body">
+                <h4>Needed Monthly Payment: </h4>  
+                <div id="monthlyPayOutput"></div>
+              </div>
+            </div>
+            <span>
+              <div class="card mb-2" id="totTime1">
+                  <div class="card-body">
+                    <h4>Days: </h4>  
+                    <div id="numdays"></div>
+                  </div>
+                </div>
+
+              <div class="card mb-2" id="totTime2">
+                <div class="card-body">
+                  <h4>Months: </h4>  
+                  <div id="numMonths"></div>
+                </div>
+              </div>
+
+              <div class="card mb-2" id="totTime3">
+                <div class="card-body">
+                  <h4>Years: </h4>  
+                  <div id="numYears"></div>
+                </div>
+              </div>
+            </span>
+
+            
+
+            <br>
+
+          </div> <!-- end outputs div -->
+        </form>
+      </div>
+    </div>
+  </div> <!-- end container div -->
+
+  <script src="js/app.js"></script>
+
+
+
+  <!-- With thanks to Traversy Media, Isaac Lyman, and fullstackbeginner.com . Styling inspiration from Nodws. -->
+  
+</body>
+</html>
