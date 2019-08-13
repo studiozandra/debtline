@@ -1,12 +1,11 @@
 body{
     margin-top:70px;
-    background-color: #333;
     color: white;
     background: linear-gradient(45deg, #9682C8 10%, #05BCC9);
   }
 
   #start_date{
-      text-align: center;
+    text-align: center;
   }
 
   #startDate{
@@ -14,13 +13,19 @@ body{
     display: none;
   }
 
+  #freedom_date{
+    text-align: center;
+  }
+
   #freedomDate{
-    border-radius: 7px;
+    border-radius: .3rem;
+    border: 5px solid #ffc107;
   }
 
   #plus-sign{
     cursor: pointer; /* hand-shaped cursor */
     cursor: hand; /* for IE 5.x */
+    z-index: 3;
   }
 
   .minus-sign{
@@ -28,24 +33,13 @@ body{
     cursor: hand; /* for IE 5.x */
   }
 
+  #amountAndInterest0{
+    align-content: space-around;
+  }
+
   #amountAndInterest1, #amountAndInterest2, #amountAndInterest3{
     border: 3px dotted #ffc107;
-  }
-
-  #Debt2, #rate2{
-    background-color: antiquewhite;
-  }
-
-  #Debt3, #rate3{
-    background-color: beige;
-  }
-
-  #Debt4, #rate4{
-    background-color: bisque;
-  }
-
-  #output{
-    background: rgba(0, 0, 0, 0.2);
+    border-radius: .3rem;
   }
 
   #needPay{
@@ -73,7 +67,12 @@ body{
     width: 33%;
   }
   .form-control {
-  display: inline-block;
-  width: 90%;
+    display: inline-block;
+    width: 100%;
+  }
+
+  #donate{
+    text-align: center;
+    margin: 2em;
   }
 
