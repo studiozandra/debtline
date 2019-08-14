@@ -61,17 +61,23 @@ function calc() {
     return monthlyPay.toFixed(2)
   }
 
-  // output the first debt payment
-  document.getElementById("monthlyPayOutput").innerHTML =
-    xtraCalc(debtInput0, rateInput0) +
+  function planOutput(x, y){
+    var z = 
+    xtraCalc(x, y) +
     "  " +
     "- That's about " +
-    (xtraCalc(debtInput0, rateInput0) / 5).toFixed(2) +
+    (xtraCalc(x, y) / 5).toFixed(2) +
     " hrs of online surveys, " +
-    (xtraCalc(debtInput0, rateInput0) / 10).toFixed(2) +
+    (xtraCalc(x, y) / 10).toFixed(2) +
     " hrs of teaching english, or " +
-    (xtraCalc(debtInput0, rateInput0) / 16).toFixed(2) +
+    (xtraCalc(x, y) / 16).toFixed(2) +
     " hours of Lyft driving."
+    return z
+  }
+
+  // output the first debt payment
+  document.getElementById("monthlyPayOutput").innerHTML = planOutput(debtInput0, rateInput0);
+    
 
   // The bottom three days/months/years output divs:
   document.getElementById("numdays").innerHTML = totalDys
@@ -79,24 +85,12 @@ function calc() {
   document.getElementById("numYears").innerHTML = (months / 12).toFixed(2)
 
   // if any additional debts are added (made visible,) append to results div with the calculation
-  // make this into a reusable function
   // add modal with grand total, payoff plan 
   if (document.getElementById("amountAndInterest1").style.display == "block") {
     var para1 = document.createElement("p")
     para1.className = "card bg-warning mb-2"
     document.getElementById("monthlyPayOutput").appendChild(para1)
-    document.getElementsByClassName("card bg-warning mb-2")[1].innerHTML =
-      "debt 2:" +
-      " " +
-      xtraCalc(Debt2, rate2) +
-      "  " +
-      "- That's about " +
-      (xtraCalc(Debt2, rate2) / 5).toFixed(2) +
-      " hrs of online surveys, " +
-      (xtraCalc(Debt2, rate2) / 10).toFixed(2) +
-      " hrs of teaching english, or " +
-      (xtraCalc(Debt2, rate2) / 16).toFixed(2) +
-      " hours of Lyft driving."
+    document.getElementsByClassName("card bg-warning mb-2")[1].innerHTML = planOutput(Debt2, rate2)
   } else {
     var para1 = document.createElement("p")
     para1.className = "card bg-warning mb-2"
@@ -109,36 +103,14 @@ function calc() {
     var para1 = document.createElement("p")
     para1.className = "card bg-warning mb-2"
     document.getElementById("monthlyPayOutput").appendChild(para1)
-    document.getElementsByClassName("card bg-warning mb-2")[2].innerHTML =
-      "debt 3:" +
-      " " +
-      xtraCalc(Debt3, rate3) +
-      "  " +
-      "- That's about " +
-      (xtraCalc(Debt3, rate3) / 5).toFixed(2) +
-      " hrs of online surveys, " +
-      (xtraCalc(Debt3, rate3) / 10).toFixed(2) +
-      " hrs of teaching english, or " +
-      (xtraCalc(Debt3, rate3) / 16).toFixed(2) +
-      " hours of Lyft driving."
+    document.getElementsByClassName("card bg-warning mb-2")[2].innerHTML = planOutput(Debt3, rate3);
   }
 
   if (document.getElementById("amountAndInterest3").style.display == "block") {
     var para1 = document.createElement("p")
     para1.className = "card bg-warning mb-2"
     document.getElementById("monthlyPayOutput").appendChild(para1)
-    document.getElementsByClassName("card bg-warning mb-2")[3].innerHTML =
-      "debt 4:" +
-      " " +
-      xtraCalc(Debt4, rate4) +
-      "  " +
-      "- That's about " +
-      (xtraCalc(Debt4, rate4) / 5).toFixed(2) +
-      " hrs of online surveys, " +
-      (xtraCalc(Debt4, rate4) / 10).toFixed(2) +
-      " hrs of teaching english, or " +
-      (xtraCalc(Debt4, rate4) / 16).toFixed(2) +
-      " hours of Lyft driving."
+    document.getElementsByClassName("card bg-warning mb-2")[3].innerHTML = planOutput(Debt4, rate4);
   }
 
 }
