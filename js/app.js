@@ -2,6 +2,27 @@ document.getElementById("amountAndInterest1").style.display = "none"
 document.getElementById("amountAndInterest2").style.display = "none"
 document.getElementById("amountAndInterest3").style.display = "none"
 
+// output div is hidden at first, starting date (today) is also hidden, although this should be adjustable in v2.0
+document.getElementById("output").style.visibility = "hidden"
+document.getElementById("startDate").style.visibility = "hidden"
+document.getElementById("startDate").valueAsDate = new Date()
+
+// set up the date variables
+function setUpDates(userEnteredDate){
+  var freeDat = new Date(userEnteredDate)
+  var totalDys = parseInt((freeDat - new Date()) / (1000 * 60 * 60 * 24))
+  var months = totalDys / 30.44
+  return [freeDat, totalDys, months];
+}
+// setUpDates(document.getElementById("freedomDate").value)
+// var dates = setUpDates();
+
+// var freeDat2 = setUpDates()[0]
+console.log(setUpDates()[0] + ' should be users date');
+var totalDys = setUpDates()[1]
+var months = setUpDates()[2]
+
+
 // event of clicking yellow plus sign to add up to 3 other debt inputs
 document.getElementById("plus-sign").onclick = function() {
   if (document.getElementById("amountAndInterest1").style.display == "none") {
@@ -34,22 +55,17 @@ document.getElementById("minus-sign3").onclick = function minus3() {
   }
 }
 
-// output div is hidden at first, starting date (today) is also hidden, although this should be adjustable in v2.0
-document.getElementById("output").style.visibility = "hidden"
-document.getElementById("startDate").style.visibility = "hidden"
-document.getElementById("startDate").valueAsDate = new Date()
 
+// The main function:
 function calc() {
+  var totalDys = setUpDates(document.getElementById("freedomDate").value)[1];
+  var months = setUpDates(document.getElementById("freedomDate").value)[2];
   // reveal the output divs
   document.getElementById("output").style.visibility = "visible"
 
-  // set up the date variables
-  const freeDat = new Date(document.getElementById("freedomDate").value)
-  const totalDys = parseInt((freeDat - new Date()) / (1000 * 60 * 60 * 24))
-  const months = totalDys / 30.44
-
   // The calculation of any additional debts -- '|| 0' avoids displaying "NaN" before the user can enter both values
   function xtraCalc(d, r) {
+    
     const xtraIntr = r.value || 0
     const rt = xtraIntr / 12 / 100
 
@@ -61,18 +77,19 @@ function calc() {
     return monthlyPay.toFixed(2)
   }
 
-  function planOutput(x, y){
-    var z = 
-    xtraCalc(x, y) +
+  // outputs the possible side gigs advice elements under each monthly payment
+  function planOutput(anyDebt, anyRate){
+    var advice = 
+    xtraCalc(anyDebt, anyRate) +
     "  " +
     "- That's about " +
-    (xtraCalc(x, y) / 5).toFixed(2) +
+    (xtraCalc(anyDebt, anyRate) / 5).toFixed(2) +
     " hrs of online surveys, " +
-    (xtraCalc(x, y) / 10).toFixed(2) +
+    (xtraCalc(anyDebt, anyRate) / 10).toFixed(2) +
     " hrs of teaching english, or " +
-    (xtraCalc(x, y) / 16).toFixed(2) +
+    (xtraCalc(anyDebt, anyRate) / 16).toFixed(2) +
     " hours of Lyft driving."
-    return z
+    return advice
   }
 
   // output the first debt payment
@@ -113,20 +130,22 @@ function calc() {
     document.getElementsByClassName("card bg-warning mb-2")[3].innerHTML = planOutput(Debt4, rate4);
   }
 
-}
+};
 
 // listen for any inputs and recalculate
 var inputs = document.querySelectorAll("input")
 inputs.forEach(inp => {
   inp.addEventListener("input", calc)
-})
+  setUpDates();
+  console.log(months.toFixed(2) + ' should be months')
+});
 
 // listen for minus sign clicks
 var minus = document.getElementsByClassName("minus-sign")
 for (var i = 0; i < minus.length; i++) {
   minus[i].addEventListener("click", calc)
-}
+};
 
 // listen for plus sign clicks
-var plus = document.getElementById("plus-sign")
-plus.addEventListener("click", calc)
+var plus = document.getElementById("plus-sign");
+plus.addEventListener("click", calc);
