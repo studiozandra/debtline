@@ -7,7 +7,7 @@ document.getElementById("output").style.visibility = "hidden"
 document.getElementById("startDate").style.visibility = "hidden"
 document.getElementById("startDate").valueAsDate = new Date()
 
-// set up the date variables
+// set up the date variables (wish I could force a minimum of 30 days from today)
 function setUpDates(userEnteredDate){
   var freeDat = new Date(userEnteredDate)
   var totalDys = parseInt((freeDat - new Date()) / (1000 * 60 * 60 * 24))
@@ -60,10 +60,11 @@ document.getElementById("minus-sign3").onclick = function minus3() {
 function calc() {
   var totalDys = setUpDates(document.getElementById("freedomDate").value)[1];
   var months = setUpDates(document.getElementById("freedomDate").value)[2];
+
   // reveal the output divs
   document.getElementById("output").style.visibility = "visible"
 
-  // The calculation of any additional debts -- '|| 0' avoids displaying "NaN" before the user can enter both values
+  // The amortization? formula -- '|| 0' avoids displaying "NaN" before the user can enter both values
   function xtraCalc(d, r) {
     
     const xtraIntr = r.value || 0
@@ -149,3 +150,8 @@ for (var i = 0; i < minus.length; i++) {
 // listen for plus sign clicks
 var plus = document.getElementById("plus-sign");
 plus.addEventListener("click", calc);
+
+// next steps: total up the debts, if more than 1 (maybe value || 0), in the modal. Maybe a pie chart divided evenly with each radio checked
+// totalDebts = ( debt0 || 0) + ( debt1 || 0) + (debt2 || 0) + (debt3 || 0)
+// payoffPlan innerHTML = "To pay off " (totalDebts) + " by " + (user's chosen date) + ":"
+// planDetail  
