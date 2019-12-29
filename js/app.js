@@ -90,11 +90,12 @@ function calc() {
     " hrs of teaching english, or " +
     (xtraCalc(anyDebt, anyRate) / 16).toFixed(2) +
     " hours of Lyft driving."
+    console.log("advice " + xtraCalc(anyDebt, anyRate))
     return advice
   }
 
   // output the first debt payment
-  document.getElementById("monthlyPayOutput").innerHTML = planOutput(debtInput0, rateInput0);
+  document.getElementById("monthlyPayOutput").innerHTML = planOutput(debt1, rate1);
     
 
   // The bottom three days/months/years output divs:
@@ -108,7 +109,7 @@ function calc() {
     var para1 = document.createElement("p")
     para1.className = "card bg-warning mb-2"
     document.getElementById("monthlyPayOutput").appendChild(para1)
-    document.getElementsByClassName("card bg-warning mb-2")[1].innerHTML = planOutput(Debt2, rate2)
+    document.getElementsByClassName("card bg-warning mb-2")[1].innerHTML = planOutput(debt2, rate2)
   } else {
     var para1 = document.createElement("p")
     para1.className = "card bg-warning mb-2"
@@ -121,14 +122,14 @@ function calc() {
     var para1 = document.createElement("p")
     para1.className = "card bg-warning mb-2"
     document.getElementById("monthlyPayOutput").appendChild(para1)
-    document.getElementsByClassName("card bg-warning mb-2")[2].innerHTML = planOutput(Debt3, rate3);
+    document.getElementsByClassName("card bg-warning mb-2")[2].innerHTML = planOutput(debt3, rate3);
   }
 
   if (document.getElementById("amountAndInterest3").style.display == "block") {
     var para1 = document.createElement("p")
     para1.className = "card bg-warning mb-2"
     document.getElementById("monthlyPayOutput").appendChild(para1)
-    document.getElementsByClassName("card bg-warning mb-2")[3].innerHTML = planOutput(Debt4, rate4);
+    document.getElementsByClassName("card bg-warning mb-2")[3].innerHTML = planOutput(debt4, rate4);
   }
 
 };
