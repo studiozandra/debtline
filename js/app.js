@@ -7,6 +7,7 @@ document.getElementById("output").style.visibility = "hidden"
 document.getElementById("startDate").style.visibility = "hidden"
 document.getElementById("startDate").valueAsDate = new Date()
 
+
 // set up the date variables (wish I could force a minimum of 30 days from today)
 function setUpDates(userEnteredDate){
   var freeDat = new Date(userEnteredDate)
@@ -22,6 +23,8 @@ console.log(setUpDates()[0] + ' should be users date');
 var totalDys = setUpDates()[1]
 var months = setUpDates()[2]
 
+// initialize an array to hold all the debts info
+var debtArray = [[0,0],[0,0],[0,0],[0,0]];
 
 // event of clicking yellow plus sign to add up to 3 other debt inputs
 document.getElementById("plus-sign").onclick = function() {
@@ -60,6 +63,16 @@ document.getElementById("minus-sign3").onclick = function minus3() {
 function calc() {
   var totalDys = setUpDates(document.getElementById("freedomDate").value)[1];
   var months = setUpDates(document.getElementById("freedomDate").value)[2];
+  
+  var debtInputs = document.getElementsByClassName('debts');
+  var rateInputs = document.getElementsByClassName('rates');
+  for (i = 0; i < debtInputs.length; i ++){
+    debtArray[i] = [debtInputs[i].value, rateInputs[i].value];
+  }
+  console.log("debtArray...")
+  console.log(debtArray)
+  
+
 
   // reveal the output divs
   document.getElementById("output").style.visibility = "visible"
@@ -80,22 +93,19 @@ function calc() {
 
   // outputs the possible side gigs advice elements under each monthly payment
   function planOutput(anyDebt, anyRate){
-    var advice = 
-    xtraCalc(anyDebt, anyRate) +
-    "  " +
-    "- That's about " +
-    (xtraCalc(anyDebt, anyRate) / 5).toFixed(2) +
-    " hrs of online surveys, " +
-    (xtraCalc(anyDebt, anyRate) / 10).toFixed(2) +
-    " hrs of teaching english, or " +
-    (xtraCalc(anyDebt, anyRate) / 16).toFixed(2) +
-    " hours of Lyft driving."
+    var advice = [
+      xtraCalc(anyDebt, anyRate),  
+      "- That's about " + (xtraCalc(anyDebt, anyRate) / 5).toFixed(2) + " hrs of online surveys ", 
+    (xtraCalc(anyDebt, anyRate) / 10).toFixed(2) + " hrs of teaching english ", 
+    "or " + (xtraCalc(anyDebt, anyRate) / 16).toFixed(2) + " hours of Lyft driving."
+  ]   
     console.log("advice " + xtraCalc(anyDebt, anyRate))
     return advice
   }
 
   // output the first debt payment
-  document.getElementById("monthlyPayOutput").innerHTML = planOutput(debt1, rate1);
+  console.log(debt1.value + " DEBT!");
+  document.getElementById("monthlyPayOutput").innerHTML = "Debt 1: " + planOutput(debt1, rate1)[0];
     
 
   // The bottom three days/months/years output divs:
@@ -109,7 +119,7 @@ function calc() {
     var para1 = document.createElement("p")
     para1.className = "card bg-warning mb-2"
     document.getElementById("monthlyPayOutput").appendChild(para1)
-    document.getElementsByClassName("card bg-warning mb-2")[1].innerHTML = planOutput(debt2, rate2)
+    document.getElementsByClassName("card bg-warning mb-2")[1].innerHTML = "Debt 2: " + planOutput(debt2, rate2)[0]
   } else {
     var para1 = document.createElement("p")
     para1.className = "card bg-warning mb-2"
@@ -122,14 +132,14 @@ function calc() {
     var para1 = document.createElement("p")
     para1.className = "card bg-warning mb-2"
     document.getElementById("monthlyPayOutput").appendChild(para1)
-    document.getElementsByClassName("card bg-warning mb-2")[2].innerHTML = planOutput(debt3, rate3);
+    document.getElementsByClassName("card bg-warning mb-2")[2].innerHTML = "Debt 3: " + planOutput(debt3, rate3)[0];
   }
 
   if (document.getElementById("amountAndInterest3").style.display == "block") {
     var para1 = document.createElement("p")
     para1.className = "card bg-warning mb-2"
     document.getElementById("monthlyPayOutput").appendChild(para1)
-    document.getElementsByClassName("card bg-warning mb-2")[3].innerHTML = planOutput(debt4, rate4);
+    document.getElementsByClassName("card bg-warning mb-2")[3].innerHTML = "Debt 4: " + planOutput(debt4, rate4)[0];
   }
 
 };
@@ -146,6 +156,14 @@ inputs.forEach(inp => {
 var minus = document.getElementsByClassName("minus-sign")
 for (var i = 0; i < minus.length; i++) {
   minus[i].addEventListener("click", calc)
+  minus[i].addEventListener("click", function(event){
+    console.log("hey minus");
+    console.log(event.target.parentElement)
+    event.target.parentElement.firstElementChild.value = 0;
+      rateInputs[i + 1][0] = 0;
+    
+
+  })
 };
 
 // listen for plus sign clicks
