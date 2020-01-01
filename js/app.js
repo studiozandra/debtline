@@ -128,14 +128,14 @@ function calc() {
       "click + / - to enter/remove more debts"
   }
 
-  if (document.getElementById("amountAndInterest2").style.display == "block") {
+  if ((document.getElementById("amountAndInterest2").style.display == "block") && planOutput(debt3, rate3)[0] > 0) {
     var para1 = document.createElement("p")
     para1.className = "card bg-warning mb-2"
     document.getElementById("monthlyPayOutput").appendChild(para1)
     document.getElementsByClassName("card bg-warning mb-2")[2].innerHTML = "Debt 3: " + planOutput(debt3, rate3)[0];
   }
 
-  if (document.getElementById("amountAndInterest3").style.display == "block") {
+  if ((document.getElementById("amountAndInterest3").style.display == "block") && planOutput(debt4, rate4)[0] > 0) {
     var para1 = document.createElement("p")
     para1.className = "card bg-warning mb-2"
     document.getElementById("monthlyPayOutput").appendChild(para1)
