@@ -29,11 +29,9 @@ function toggleModal() {
       }
   }
   console.log(totalAllDebts + " totalAllDebts")
-  document.getElementById('totalDebt').innerHTML = "Total debt is: " + totalAllDebts + ". " + "Debt 1: " + planOutput(debt1, rate1);
-   // next steps: total up the debts, if more than 1 (maybe value || 0), in the modal. Maybe a pie chart divided evenly with each radio checked
-   // totalDebts = ( debt0 || 0) + ( debt1 || 0) + (debt2 || 0) + (debt3 || 0)
-   // payoffPlan innerHTML = "To pay off " (totalDebts) + " by " + (user's chosen date) + ":"
-   // planDetail  
+  document.getElementById('totalDebt').innerHTML = "To pay off all " + totalAllDebts + " by " + setUpDates(document.getElementById("freedomDate").value)[0].toLocaleDateString() + " " + calc();
+   // Maybe a pie chart divided evenly with each radio checked
+   // maybe add more planDetail  
    
 }
 

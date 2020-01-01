@@ -141,6 +141,8 @@ function calc() {
     document.getElementById("monthlyPayOutput").appendChild(para1)
     document.getElementsByClassName("card bg-warning mb-2")[3].innerHTML = "Debt 4: " + planOutput(debt4, rate4)[0];
   }
+  let adviceArr = [planOutput(debt1, rate1), planOutput(debt2, rate2), planOutput(debt3, rate3), planOutput(debt4, rate4)];
+  return adviceArr;
 
 };
 
