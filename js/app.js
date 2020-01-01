@@ -155,15 +155,14 @@ inputs.forEach(inp => {
 // listen for minus sign clicks
 var minus = document.getElementsByClassName("minus-sign")
 for (var i = 0; i < minus.length; i++) {
-  minus[i].addEventListener("click", calc)
   minus[i].addEventListener("click", function(event){
     console.log("hey minus");
     console.log(event.target.parentElement)
     event.target.parentElement.firstElementChild.value = 0;
-      rateInputs[i + 1][0] = 0;
-    
+    event.target.parentElement.childNodes[3].value = 0;
 
   })
+  minus[i].addEventListener("click", calc)
 };
 
 // listen for plus sign clicks
