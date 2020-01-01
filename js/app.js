@@ -156,8 +156,9 @@ inputs.forEach(inp => {
 var minus = document.getElementsByClassName("minus-sign")
 for (var i = 0; i < minus.length; i++) {
   minus[i].addEventListener("click", function(event){
+    // for the debt/interest rate corresponding to whichever minus symbol was clicked, reset value to zero.
+    // this will break if anything is added to the HTML form, so might be better to place inside lines 42-59
     console.log("hey minus");
-    console.log(event.target.parentElement)
     event.target.parentElement.firstElementChild.value = 0;
     event.target.parentElement.childNodes[3].value = 0;
 
