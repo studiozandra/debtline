@@ -93,6 +93,7 @@ function calc() {
 
   // outputs the possible side gigs advice elements under each monthly payment
   function planOutput(anyDebt, anyRate){
+    // make this conditional, only push to advice arr if data exists or > 0
     var advice = [
       xtraCalc(anyDebt, anyRate),  
       "- That's about " + (xtraCalc(anyDebt, anyRate) / 5).toFixed(2) + " hrs of online surveys ", 
