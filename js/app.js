@@ -91,10 +91,9 @@ function calc() {
     return monthlyPay.toFixed(2)
   }
 
-  // outputs the possible side gigs advice elements under each monthly payment
+  // outputs the possible side gigs advice elements under each monthly payment. to-do: store as nested objects
   function planOutput(anyDebt, anyRate){
     var advice = [];
-    // make this conditional, only push to advice arr if data exists or > 0
     if((xtraCalc(anyDebt, anyRate) !== 0) && (xtraCalc(anyDebt, anyRate) > 0)){
     advice = [
       xtraCalc(anyDebt, anyRate),  

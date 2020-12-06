@@ -119,6 +119,7 @@ body{
   opacity: .5;
   text-align: center;
   display: block;
+  float: none;
   
 }
 .closeButton {
