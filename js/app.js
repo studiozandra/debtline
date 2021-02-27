@@ -37,26 +37,17 @@ document.getElementById("plus-sign").onclick = function() {
   } else {
     document.getElementById("amountAndInterest3").style.display = "block"
   }
-}
+};
 
 // event of clicking yellow minus sign to remove 3 other debt inputs
-document.getElementById("minus-sign1").onclick = function minus1() {
-  if (document.getElementById("amountAndInterest1").style.display == "block") {
-    document.getElementById("amountAndInterest1").style.display = "none"
+// with an assist by the very awesome Mark Stewart
+["1", "2", "3"].forEach((number) => {
+  document.getElementById(`minus-sign${number}`).onclick = function () {
+    if (document.getElementById(`amountAndInterest${number}`).style.display == "block") {
+      document.getElementById(`amountAndInterest${number}`).style.display = "none"
+    }
   }
-}
-
-document.getElementById("minus-sign2").onclick = function minus2() {
-  if (document.getElementById("amountAndInterest2").style.display == "block") {
-    document.getElementById("amountAndInterest2").style.display = "none"
-  }
-}
-
-document.getElementById("minus-sign3").onclick = function minus3() {
-  if (document.getElementById("amountAndInterest3").style.display == "block") {
-    document.getElementById("amountAndInterest3").style.display = "none"
-  }
-}
+})
 
 
 // The main function:
@@ -89,7 +80,7 @@ function calc() {
       parseFloat((rt * dbt) / (1 - Math.pow(1 + rt, -months))) || 0
 
     return monthlyPay.toFixed(2)
-  }
+  };
 
   // outputs the possible side gigs advice elements under each monthly payment. to-do: store as nested objects
   function planOutput(anyDebt, anyRate){
@@ -109,7 +100,7 @@ function calc() {
 
   // output the first debt payment
   console.log(debt1.value + " DEBT!");
-  document.getElementById("monthlyPayOutput").innerHTML = "Debt 1: " + planOutput(debt1, rate1)[0];
+  document.getElementById("monthlyPayOutput").innerHTML = "Debt 1: " + planOutput(debt1, rate1)[0]; // to-do: add debt nickname fields
     
 
   // The bottom three days/months/years output divs:
@@ -117,13 +108,24 @@ function calc() {
   document.getElementById("numMonths").innerHTML = months.toFixed(2)
   document.getElementById("numYears").innerHTML = (months / 12).toFixed(2)
 
+
+
+  // with aNOTHER assist by the very awesome Mark Stewart
+ function appendAdditionalDebt(debt, rate, para, index){
+   console.log(`messed up bits Debt ${index + 1}: ${planOutput(debt, rate)[0]}`)
+   console.log(planOutput(debt, rate)[0])
+   para = document.createElement("p")
+   para.className = "card bg-warning mb-2"
+  
+   document.getElementById("monthlyPayOutput").appendChild(para)
+   document.getElementsByClassName("card bg-warning mb-2")[index].innerHTML = `Debt ${index + 1}: ${planOutput(debt, rate)[0]}`
+ }
+
+
   // if any additional debts are added (made visible,) append to results div with the calculation
   // add modal with grand total, payoff plan 
   if (document.getElementById("amountAndInterest1").style.display == "block") {
-    var para1 = document.createElement("p")
-    para1.className = "card bg-warning mb-2"
-    document.getElementById("monthlyPayOutput").appendChild(para1)
-    document.getElementsByClassName("card bg-warning mb-2")[1].innerHTML = "Debt 2: " + planOutput(debt2, rate2)[0]
+    appendAdditionalDebt(debt2, rate2, para1, 1)
   } else {
     var para1 = document.createElement("p")
     para1.className = "card bg-warning mb-2"
@@ -133,25 +135,21 @@ function calc() {
   }
 
   if ((document.getElementById("amountAndInterest2").style.display == "block") && planOutput(debt3, rate3)[0] > 0) {
-    var para1 = document.createElement("p")
-    para1.className = "card bg-warning mb-2"
-    document.getElementById("monthlyPayOutput").appendChild(para1)
-    document.getElementsByClassName("card bg-warning mb-2")[2].innerHTML = "Debt 3: " + planOutput(debt3, rate3)[0];
+    appendAdditionalDebt(debt3, rate3, para1, 2)
   }
 
   if ((document.getElementById("amountAndInterest3").style.display == "block") && planOutput(debt4, rate4)[0] > 0) {
-    var para1 = document.createElement("p")
-    para1.className = "card bg-warning mb-2"
-    document.getElementById("monthlyPayOutput").appendChild(para1)
-    document.getElementsByClassName("card bg-warning mb-2")[3].innerHTML = "Debt 4: " + planOutput(debt4, rate4)[0];
+    appendAdditionalDebt(debt4, rate4, para1, 3)
   }
   let adviceArr = [planOutput(debt1, rate1), planOutput(debt2, rate2), planOutput(debt3, rate3), planOutput(debt4, rate4)];
   return adviceArr;
 
 };
 
+
+
 // listen for any inputs and recalculate
-var inputs = document.querySelectorAll("input")
+const inputs = document.querySelectorAll("input")
 inputs.forEach(inp => {
   inp.addEventListener("input", calc)
   setUpDates();
