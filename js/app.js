@@ -10,9 +10,9 @@ document.getElementById("startDate").valueAsDate = new Date()
 
 // set up the date variables (wish I could force a minimum of 30 days from today)
 function setUpDates(userEnteredDate){
-  var freeDat = new Date(userEnteredDate)
-  var totalDys = parseInt((freeDat - new Date()) / (1000 * 60 * 60 * 24))
-  var months = totalDys / 30.44
+  let freeDat = new Date(userEnteredDate)
+  let totalDys = parseInt((freeDat - new Date()) / (1000 * 60 * 60 * 24))
+  let months = totalDys / 30.44
   return [freeDat, totalDys, months];
 }
 // setUpDates(document.getElementById("freedomDate").value)
@@ -157,7 +157,7 @@ inputs.forEach(inp => {
 });
 
 // listen for minus sign clicks
-var minus = document.getElementsByClassName("minus-sign")
+let minus = document.getElementsByClassName("minus-sign")
 for (var i = 0; i < minus.length; i++) {
   minus[i].addEventListener("click", function(event){
     // for the debt/interest rate corresponding to whichever minus symbol was clicked, reset value to zero.
