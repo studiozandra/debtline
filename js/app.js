@@ -6,7 +6,10 @@ document.getElementById("amountAndInterest3").style.display = "none"
 document.getElementById("output").style.visibility = "hidden"
 document.getElementById("startDate").style.visibility = "hidden"
 document.getElementById("startDate").valueAsDate = new Date()
-
+document.getElementById("plan1").style.display = "none"
+document.getElementById("plan2").style.display = "none"
+document.getElementById("plan3").style.display = "none"
+document.getElementById("plan4").style.display = "none"
 
 // set up the date variables (wish I could force a minimum of 30 days from today)
 function setUpDates(userEnteredDate){

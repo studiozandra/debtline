@@ -1,12 +1,13 @@
 
 var modal = document.querySelector(".modalz");
-var trigger = document.querySelector(".trigger");
-var closeButton = document.querySelector(".closeButton");
+var trigger = document.querySelector(".trigger"); // 'generate' btn
+var closeButton = document.querySelector(".closeButton"); // red 'x' btn
 
 function totalDebts(){
-  var total = (planOutput(debt1, rate1)) + ((planOutput(debt2, rate2)) || 0 ) + ((planOutput(debt3, rate3)) || 0 ) + ((planOutput(debt4, rate4)) || 0 );
-
-  console.log(total);
+  var total = (planOutput(debt1, rate1)) + 
+  ((planOutput(debt2, rate2)) || 0 ) + 
+  ((planOutput(debt3, rate3)) || 0 ) + 
+  ((planOutput(debt4, rate4)) || 0 );
   return total;
 }
 var totalAllDebts = 0;
@@ -30,7 +31,9 @@ function toggleModal() {
   }
   console.log(totalAllDebts + " totalAllDebts")
   document.getElementById('totalDebt').innerHTML = "To pay off all " + totalAllDebts + " by " + setUpDates(document.getElementById("freedomDate").value)[0].toLocaleDateString() + " " + calc();
-   // Maybe a pie chart divided evenly with each radio checked
+  document.getElementById('plan1Amt').innerHTML = "" 
+  document.getElementById('plan1Gigs').innerHTML = ""
+  // Maybe a pie chart divided evenly with each radio checked
    // maybe add more planDetail  
    
 }
