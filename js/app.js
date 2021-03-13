@@ -6,10 +6,12 @@ document.getElementById("amountAndInterest3").style.display = "none"
 document.getElementById("output").style.visibility = "hidden"
 document.getElementById("startDate").style.visibility = "hidden"
 document.getElementById("startDate").valueAsDate = new Date()
-document.getElementById("plan1").style.display = "none"
-document.getElementById("plan2").style.display = "none"
-document.getElementById("plan3").style.display = "none"
-document.getElementById("plan4").style.display = "none"
+
+// advice modal divs are not displayed unless needed
+// document.getElementById("plan1").style.display = "none"
+// document.getElementById("plan2").style.display = "none"
+// document.getElementById("plan3").style.display = "none"
+// document.getElementById("plan4").style.display = "none"
 
 // set up the date variables (wish I could force a minimum of 30 days from today)
 function setUpDates(userEnteredDate){
@@ -22,14 +24,24 @@ function setUpDates(userEnteredDate){
 // var dates = setUpDates();
 
 // var freeDat2 = setUpDates()[0]
-console.log(setUpDates()[0] + ' should be users date');
+
+// console.log(setUpDates()[0] + ' should be users date');
 var totalDys = setUpDates()[1]
 var months = setUpDates()[2]
 
+
 // initialize an array to hold all the debts info
+
 var debtArray = [[0,0],[0,0],[0,0],[0,0]];
 
+
+// initialize array to hold all the payoff advice for the modal divs
+
+let adviceArr = [];
+
+
 // event of clicking yellow plus sign to add up to 3 other debt inputs
+
 document.getElementById("plus-sign").onclick = function() {
   if (document.getElementById("amountAndInterest1").style.display == "none") {
     document.getElementById("amountAndInterest1").style.display = "block"
@@ -42,8 +54,10 @@ document.getElementById("plus-sign").onclick = function() {
   }
 };
 
+
 // event of clicking yellow minus sign to remove 3 other debt inputs
 // with an assist by the very awesome Mark Stewart
+
 ["1", "2", "3"].forEach((number) => {
   document.getElementById(`minus-sign${number}`).onclick = function () {
     if (document.getElementById(`amountAndInterest${number}`).style.display == "block") {
@@ -54,6 +68,7 @@ document.getElementById("plus-sign").onclick = function() {
 
 
 // The main function:
+
 function calc() {
   var totalDys = setUpDates(document.getElementById("freedomDate").value)[1];
   var months = setUpDates(document.getElementById("freedomDate").value)[2];
@@ -69,9 +84,12 @@ function calc() {
 
 
   // reveal the output divs
+
   document.getElementById("output").style.visibility = "visible"
 
+
   // The amortization? formula -- '|| 0' avoids displaying "NaN" before the user can enter both values
+
   function xtraCalc(d, r) {
     
     const xtraIntr = r.value || 0
@@ -85,7 +103,9 @@ function calc() {
     return monthlyPay.toFixed(2)
   };
 
+
   // outputs the possible side gigs advice elements under each monthly payment. to-do: store as nested objects
+
   function planOutput(anyDebt, anyRate){
     var advice = [];
     if((xtraCalc(anyDebt, anyRate) !== 0) && (xtraCalc(anyDebt, anyRate) > 0)){
@@ -94,19 +114,21 @@ function calc() {
       "- That's about " + (xtraCalc(anyDebt, anyRate) / 5).toFixed(2) + " hrs of online surveys ", 
     (xtraCalc(anyDebt, anyRate) / 10).toFixed(2) + " hrs of teaching english ", 
     "or " + (xtraCalc(anyDebt, anyRate) / 16).toFixed(2) + " hours of Lyft driving."
-  ]}else{
+    ]
+    }else{
     advice = "";
-  }   
-    console.log("advice " + xtraCalc(anyDebt, anyRate))
+    }
+
     return advice
   }
 
   // output the first debt payment
-  console.log(debt1.value + " DEBT!");
-  document.getElementById("monthlyPayOutput").innerHTML = "Debt 1: " + planOutput(debt1, rate1)[0]; // to-do: add debt nickname fields
+
+  document.getElementById("monthlyPayOutput").innerHTML = "Debt 1: " + planOutput(debt1, rate1)[0]; // to-do: add debt nickname fields instead of Debt 1: Car: Credit Card:, etc
     
 
   // The bottom three days/months/years output divs:
+
   document.getElementById("numdays").innerHTML = totalDys
   document.getElementById("numMonths").innerHTML = months.toFixed(2)
   document.getElementById("numYears").innerHTML = (months / 12).toFixed(2)
@@ -114,15 +136,15 @@ function calc() {
 
 
   // with aNOTHER assist by the very awesome Mark Stewart
+  // if any additional debts are added (made visible,) append to results div with the calculation (index + 1 because the first input must always already be made)
  function appendAdditionalDebt(debt, rate, para, index){
-   console.log(`messed up bits Debt ${index + 1}: ${planOutput(debt, rate)[0]}`)
-   console.log(planOutput(debt, rate)[0])
+
    para = document.createElement("p")
    para.className = "card bg-warning mb-2"
   
    document.getElementById("monthlyPayOutput").appendChild(para)
    document.getElementsByClassName("card bg-warning mb-2")[index].innerHTML = `Debt ${index + 1}: ${planOutput(debt, rate)[0]}`
- }
+  }
 
 
   // if any additional debts are added (made visible,) append to results div with the calculation
@@ -144,7 +166,9 @@ function calc() {
   if ((document.getElementById("amountAndInterest3").style.display == "block") && planOutput(debt4, rate4)[0] > 0) {
     appendAdditionalDebt(debt4, rate4, para1, 3)
   }
-  let adviceArr = [planOutput(debt1, rate1), planOutput(debt2, rate2), planOutput(debt3, rate3), planOutput(debt4, rate4)];
+  adviceArr = [planOutput(debt1, rate1), planOutput(debt2, rate2), planOutput(debt3, rate3), planOutput(debt4, rate4)];
+
+
   return adviceArr;
 
 };
@@ -158,6 +182,8 @@ inputs.forEach(inp => {
   setUpDates();
   console.log(months.toFixed(2) + ' should be months')
 });
+
+
 
 // listen for minus sign clicks
 let minus = document.getElementsByClassName("minus-sign")
@@ -177,7 +203,5 @@ for (var i = 0; i < minus.length; i++) {
 var plus = document.getElementById("plus-sign");
 plus.addEventListener("click", calc);
 
-// next steps: total up the debts, if more than 1 (maybe value || 0), in the modal. Maybe a pie chart divided evenly with each radio checked
-// totalDebts = ( debt0 || 0) + ( debt1 || 0) + (debt2 || 0) + (debt3 || 0)
-// payoffPlan innerHTML = "To pay off " (totalDebts) + " by " + (user's chosen date) + ":"
-// planDetail  
+// next steps: Maybe a pie chart divided evenly with each radio checked, or at least color coding
+ 
