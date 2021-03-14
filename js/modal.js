@@ -2,18 +2,18 @@ let t0 = performance.now();
 
 
 
-var modal = document.querySelector(".modalz");
-var trigger = document.querySelector(".trigger"); // 'generate' btn
-var closeButton = document.querySelector(".closeButton"); // red 'x' btn
+let modal = document.querySelector(".modalz");
+let trigger = document.querySelector(".trigger"); // 'generate' btn
+let closeButton = document.querySelector(".closeButton"); // red 'x' btn
 
 function totalDebts(){
-  var total = (planOutput(debt1, rate1)) + 
+  let total = (planOutput(debt1, rate1)) + 
   ((planOutput(debt2, rate2)) || 0 ) + 
   ((planOutput(debt3, rate3)) || 0 ) + 
   ((planOutput(debt4, rate4)) || 0 );
   return total;
 }
-var totalAllDebts = 0;
+let totalAllDebts = 0;
 
 
 // pop up modal
@@ -36,6 +36,12 @@ function toggleModal() {
   document.getElementById('totalDebt').innerHTML = "To pay off all " + totalAllDebts + " by " + setUpDates(document.getElementById("freedomDate").value)[0].toLocaleDateString() + ": ";
   document.getElementById('plan1Amt').innerHTML = ` monthly payment is ${adviceArr[0][0]}` 
   document.getElementById('plan1Gigs').innerHTML = `Possible gigs ${adviceArr[0][1]}, ${adviceArr[0][2]}, ${adviceArr[0][3]}`
+
+  document.getElementById('plan2Amt').innerHTML = ` monthly payment is ${adviceArr[0][0]}` 
+  document.getElementById('plan2Gigs').innerHTML = `Possible gigs ${adviceArr[1][1]}, ${adviceArr[0][2]}, ${adviceArr[0][3]}`
+
+  document.getElementById('plan3Amt').innerHTML = ` monthly payment is ${adviceArr[0][0]}` 
+  document.getElementById('plan3Gigs').innerHTML = `Possible gigs ${adviceArr[2][1]}, ${adviceArr[0][2]}, ${adviceArr[0][3]}`
   // Maybe a pie chart divided evenly with each radio checked
    // maybe add more planDetail  
    var t1 = performance.now();

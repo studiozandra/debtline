@@ -109,6 +109,51 @@ body{
     color: #101A2B;
 }
 
+#plan1 {
+  background-color: floralwhite;
+  padding: 1rem 1.5rem;
+  width: calc(100% - 5rem);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+#plan2 {
+  background-color: lavender; 
+  padding: 1rem 1.5rem;
+  width: calc(100% - 5rem);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+#plan3 {
+  background-color: floralwhite; 
+  padding: 1rem 1.5rem;
+  width: calc(100% - 5rem);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+#plan4 {
+  background-color: lavender; 
+  padding: 1rem 1.5rem;
+  width: calc(100% - 5rem);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+
 .close {
   display: block;
   font-size: 1.5rem;
