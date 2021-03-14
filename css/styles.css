@@ -112,7 +112,7 @@ body{
 #plan1 {
   background-color: floralwhite;
   padding: 1rem 1.5rem;
-  width: calc(100% - 5rem);
+  width: 100%;
   border-radius: 0.5rem;
   display: flex;
   align-items: flex-start;
@@ -123,7 +123,7 @@ body{
 #plan2 {
   background-color: lavender; 
   padding: 1rem 1.5rem;
-  width: calc(100% - 5rem);
+  width: 100%;
   border-radius: 0.5rem;
   display: flex;
   align-items: flex-start;
@@ -134,7 +134,7 @@ body{
 #plan3 {
   background-color: floralwhite; 
   padding: 1rem 1.5rem;
-  width: calc(100% - 5rem);
+  width: 100%;
   border-radius: 0.5rem;
   display: flex;
   align-items: flex-start;
@@ -145,7 +145,7 @@ body{
 #plan4 {
   background-color: lavender; 
   padding: 1rem 1.5rem;
-  width: calc(100% - 5rem);
+  width: 100%;;
   border-radius: 0.5rem;
   display: flex;
   align-items: flex-start;
