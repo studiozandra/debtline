@@ -32,19 +32,22 @@ function toggleModal() {
          console.log('nada')
       }
   }
-  console.log(totalAllDebts + " totalAllDebts")
+  // console.log(totalAllDebts + " totalAllDebts")
+  // not DRY
+
   document.getElementById('totalDebt').innerHTML = "To pay off all " + totalAllDebts + " by " + setUpDates(document.getElementById("freedomDate").value)[0].toLocaleDateString() + ": ";
   document.getElementById('plan1Amt').innerHTML = ` monthly payment is ${adviceArr[0][0]}` 
   document.getElementById('plan1Gigs').innerHTML = `Possible gigs ${adviceArr[0][1]}, ${adviceArr[0][2]}, ${adviceArr[0][3]}`
 
-  document.getElementById('plan2Amt').innerHTML = ` monthly payment is ${adviceArr[0][0]}` 
+  document.getElementById('plan2Amt').innerHTML = ` monthly payment is ${adviceArr[1][0]}` 
   document.getElementById('plan2Gigs').innerHTML = `Possible gigs ${adviceArr[1][1]}, ${adviceArr[1][2]}, ${adviceArr[1][3]}`
 
-  document.getElementById('plan3Amt').innerHTML = ` monthly payment is ${adviceArr[0][0]}` 
+  document.getElementById('plan3Amt').innerHTML = ` monthly payment is ${adviceArr[2][0]}` 
   document.getElementById('plan3Gigs').innerHTML = `Possible gigs ${adviceArr[2][1]}, ${adviceArr[2][2]}, ${adviceArr[2][3]}`
   
-  document.getElementById('plan4Amt').innerHTML = ` monthly payment is ${adviceArr[0][0]}` 
+  document.getElementById('plan4Amt').innerHTML = ` monthly payment is ${adviceArr[3][0]}` 
   document.getElementById('plan4Gigs').innerHTML = `Possible gigs ${adviceArr[3][1]}, ${adviceArr[3][2]}, ${adviceArr[3][3]}`
+
   // Maybe a pie chart divided evenly with each radio checked
    // maybe add more planDetail  
    var t1 = performance.now();
