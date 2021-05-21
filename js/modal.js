@@ -1,4 +1,4 @@
-let t0 = performance.now();
+
 
 // hide gig advice for the bottom 3 debts
 document.getElementById('plan2').style.display = "none"
@@ -67,8 +67,7 @@ function toggleModal() {
 
   // Maybe a pie chart divided evenly with each radio checked
    // maybe add more planDetail  
-   var t1 = performance.now();
-console.log('Took', (t1 - t0).toFixed(4), 'milliseconds to complete calcs');
+
 
 }
 
