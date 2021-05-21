@@ -1,6 +1,9 @@
 let t0 = performance.now();
 
-
+// hide gig advice for the bottom 3 debts
+document.getElementById('plan2').style.display = "none"
+document.getElementById('plan3').style.display = "none"
+document.getElementById('plan4').style.display = "none"
 
 let modal = document.querySelector(".modalz");
 let trigger = document.querySelector(".trigger"); // 'generate' btn
@@ -39,14 +42,28 @@ function toggleModal() {
   document.getElementById('plan1Amt').innerHTML = ` monthly payment is ${adviceArr[0][0]}` 
   document.getElementById('plan1Gigs').innerHTML = `Possible gigs ${adviceArr[0][1]}, ${adviceArr[0][2]}, ${adviceArr[0][3]}`
 
-  document.getElementById('plan2Amt').innerHTML = ` monthly payment is ${adviceArr[1][0]}` 
-  document.getElementById('plan2Gigs').innerHTML = `Possible gigs ${adviceArr[1][1]}, ${adviceArr[1][2]}, ${adviceArr[1][3]}`
+  if (document.getElementById("amountAndInterest1").style.display == "block"){
+   document.getElementById('plan2').style.display = "block"
+   document.getElementById('plan2Amt').innerHTML = ` monthly payment is ${adviceArr[1][0]}` 
+   document.getElementById('plan2Gigs').innerHTML = `Possible gigs ${adviceArr[1][1]}, ${adviceArr[1][2]}, ${adviceArr[1][3]}`
 
-  document.getElementById('plan3Amt').innerHTML = ` monthly payment is ${adviceArr[2][0]}` 
-  document.getElementById('plan3Gigs').innerHTML = `Possible gigs ${adviceArr[2][1]}, ${adviceArr[2][2]}, ${adviceArr[2][3]}`
+  }
+
+  if (document.getElementById("amountAndInterest2").style.display == "block"){
+   document.getElementById('plan3').style.display = "block"
+   document.getElementById('plan3Amt').innerHTML = ` monthly payment is ${adviceArr[2][0]}` 
+   document.getElementById('plan3Gigs').innerHTML = `Possible gigs ${adviceArr[2][1]}, ${adviceArr[2][2]}, ${adviceArr[2][3]}`
+  }
+
+  if (document.getElementById("amountAndInterest3").style.display == "block"){
+   document.getElementById('plan4').style.display = "block"
+   document.getElementById('plan4Amt').innerHTML = ` monthly payment is ${adviceArr[3][0]}` 
+   document.getElementById('plan4Gigs').innerHTML = `Possible gigs ${adviceArr[3][1]}, ${adviceArr[3][2]}, ${adviceArr[3][3]}`
+  }
+
+ 
   
-  document.getElementById('plan4Amt').innerHTML = ` monthly payment is ${adviceArr[3][0]}` 
-  document.getElementById('plan4Gigs').innerHTML = `Possible gigs ${adviceArr[3][1]}, ${adviceArr[3][2]}, ${adviceArr[3][3]}`
+  
 
   // Maybe a pie chart divided evenly with each radio checked
    // maybe add more planDetail  
