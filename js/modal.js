@@ -38,7 +38,23 @@ function toggleModal() {
   // console.log(totalAllDebts + " totalAllDebts")
   // not DRY
 
-  document.getElementById('totalDebt').innerHTML = "To pay off all " + totalAllDebts + " by " + setUpDates(document.getElementById("freedomDate").value)[0].toLocaleDateString() + ": ";
+  desiredFreedomDate = setUpDates(document.getElementById("freedomDate").value)[0].toLocaleDateString()
+
+  function checkValidDate(){
+   let modalDateField;
+   if (desiredFreedomDate == 'Invalid Date' ){
+      modalDateField = "...hmm, the date seems to be invalid, please go back and adjust it."
+     } else {
+      modalDateField = desiredFreedomDate
+      
+     }
+
+   return modalDateField
+  }
+
+  
+
+  document.getElementById('totalDebt').innerHTML = "To pay off all " + totalAllDebts + " by " + checkValidDate() + ": ";
   document.getElementById('plan1Amt').innerHTML = ` monthly payment is ${adviceArr[0][0]}` 
   document.getElementById('plan1Gigs').innerHTML = `Possible gigs ${adviceArr[0][1]}, ${adviceArr[0][2]}, ${adviceArr[0][3]}`
 
