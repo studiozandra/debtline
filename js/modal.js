@@ -1,6 +1,6 @@
 
 
-// hide gig advice for the bottom 3 debts
+// advice modal divs are not displayed unless needed
 document.getElementById('plan2').style.display = "none"
 document.getElementById('plan3').style.display = "none"
 document.getElementById('plan4').style.display = "none"
